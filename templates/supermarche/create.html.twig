@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% form_theme formEmployer 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <h1 style="text-align: center; font-style:italic; color:aqua; font-weight:bold">Ajouter un employer ou modifier les informations qui lui sont affiliées</h1>
+
+    {{ form_start(formEmployer) }}
+
+    {{ form_row(formEmployer.matricule, {'attr': {'placeholder': "Matricule"}}) }}
+    {{ form_row(formEmployer.prenomEtNom, {'attr': {'placeholder': "Prénom et Nom"}}) }}
+    {{ form_row(formEmployer.dateDeNaissance)}}
+    {{ form_row(formEmployer.service)}}
+    {{ form_row(formEmployer.salaire, {'attr': {'placeholder': "Salaire"}}) }}
+
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Enregistrer les modifications
+        {% else %}
+            Ajouter l'employer
+        {% endif %}
+    </button>
+
+    {{ form_end(formEmployer) }}
+
+{% endblock %}

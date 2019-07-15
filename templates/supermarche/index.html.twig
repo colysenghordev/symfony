@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SupermarcheController!
+{% endblock %}
+
+{% block body %}
+
+    <h1 style="text-align: center; font-style:italic; color:aqua; font-weight:bold">Voici la liste des employers</h1>
+
+
+
+        <table id="employers" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Prénom et Nom</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Salaire</th>
+                    <th scope="col">Modification</th>
+                    <th scope="col">Suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for employer in employers %}
+                <tr class="table-secondary">
+                    <td>{{ employer.id }}</td>
+                    <td>{{ employer.matricule }}</td>
+                    <td>{{ employer.prenomEtNom }}</td>
+                    <td>{{ employer.dateDeNaissance | date('d/m/Y') }}</td>
+                    <td>{{ employer.service.libelle }}</td>
+                    <td>{{ employer.salaire }}</td>
+                    <td>
+                        <a href="supermarche/{{ employer.id }}/edit" class="btn btn-light">Modifier</a>
+                    </td>
+                    <td>
+                        <a href="supermarche/delete/{{ employer.id }}" class="btn btn-danger" data-id="{{ employer.id }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}
